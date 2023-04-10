@@ -1,0 +1,12 @@
+.square {
+  width: 100px;
+  height: 100px;
+  background-color: #000;
+  border: 1px solid pink;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
