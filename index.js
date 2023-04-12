@@ -3,39 +3,51 @@ const resetBtnEl = document.getElementById("reset")
 const changeSizeBtnEl = document.getElementById("change-size")
 let sideSquares = 6
 
-function renderSquares(sideSquares) {
-  const squareLength = Math.floor(window.getComputedStyle(containerEl).width.slice(0, -2) / String(sideSquares))
-  const rowHeight = squareLength;
-  const rowLength = squareLength * sideSquares;
+function renderGrid(sideSquares) {
   containerEl.innerHTML = ""
   
   for (let i = 0; i < sideSquares; i++) {
-    containerEl.innerHTML += `
-  <div class="row" id="row-${i + 1}" style="width: ${rowLength}px; height: ${rowHeight}px;" id=${i + 1}></div>
-`
-  const rowEl = document.getElementById(`row-${i + 1}`)
-    for (let j = 0; j < sideSquares; j++) {
-      rowEl.innerHTML += `
-        <div class="square" id="${j + 1}"></div>
-      `
-    }
+    containerEl.appendChild(createRow())
   }
 }
 
+function createRow() {
+  const rowEl = document.createElement("div")
+  const squareLength = containerEl.clientWidth / sideSquares
+
+  rowEl.classList.add("row")
+  rowEl.style.width = squareLength * sideSquares + "px";
+  rowEl.style.height = squareLength + "px";
+  for (let i = 0; i < sideSquares; i++) {
+    rowEl.appendChild(createSquare())
+  }
+  return rowEl
+}
+
+function createSquare() {
+  const squareEl = document.createElement("div")
+  squareEl.classList.add("square")
+  return squareEl
+}
+
 containerEl.addEventListener("mouseover", (event) => {
-  if (event.target.id) {
+  if (event.target.classList.contains("square") && event.buttons !== 0) {
     event.target.classList.add("white")
   }
 })
 
-changeSizeBtnEl.addEventListener("click", (event) => {
-  sideSquares = prompt("Enter size between 1 and 30")
-  renderSquares(sideSquares)
+changeSizeBtnEl.addEventListener("click", () => {
+  do {
+    sideSquares = prompt("Enter size between 1 and 30")
+  }
+  while(sideSquares <= 0 || sideSquares > 30)
+  
+  renderGrid(sideSquares)
 })
 
 resetBtnEl.addEventListener("click", (event) => {
   containerEl.innerHTML = ""
-  renderSquares(sideSquares)
+  renderGrid(sideSquares)
 })
 
-renderSquares(sideSquares)
+renderGrid(sideSquares)
