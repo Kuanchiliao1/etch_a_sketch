@@ -1,12 +1,26 @@
+html {box-sizing: border-box;}
+*, *::before, *::after {box-sizing: inherit;}
+
 .square {
-  width: 100px;
-  height: 100px;
   background-color: #000;
   border: 1px solid pink;
+  flex: 1;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 0 auto;
+  border: solid pink 5px;
+  max-height: 100vh;
+}
+
+.white {
+  background-color: white;
+}
+
+.row {
+  border: solid black 2px;
+  display: flex;
 }
