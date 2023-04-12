@@ -3,7 +3,6 @@ html {box-sizing: border-box;}
 
 .square {
   background-color: #000;
-  border: 1px solid pink;
   flex: 1;
 }
 
@@ -14,6 +13,8 @@ html {box-sizing: border-box;}
   margin: 0 auto;
   border: solid pink 5px;
   max-height: 100vh;
+  width: 30%;
+  aspect-ratio: 1/1;
 }
 
 .white {
@@ -21,6 +22,11 @@ html {box-sizing: border-box;}
 }
 
 .row {
-  border: solid black 2px;
   display: flex;
+}
+
+.btn-container {
+  margin: 2rem auto;
+  width: 50%;
+  text-align: center;
 }
